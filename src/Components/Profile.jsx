@@ -27,7 +27,7 @@ const Profile = () => {
       <Box
         color="white"
         textAlign="center"
-        marginLeft="30%"
+        marginLeft="27%"
         marginRight="auto"
         fontWeight={"600"}
       >

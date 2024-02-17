@@ -2,26 +2,16 @@ import {
   Box,
   Flex,
   Grid,
-  GridItem,
   Image,
   Text,
   Tabs,
   TabList,
-  TabPanels,
   Tab,
-  TabPanel,
   TabIndicator,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import Badge from "./Modal";
 
 const UserDetails = () => {
   const [profileDetails, setProfileDetails] = useState({});
@@ -29,6 +19,11 @@ const UserDetails = () => {
   const [rank, setRank] = useState("");
   const [allBadges, setAllBadges] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = useState(null);
+  const handleClick = (badge) => {
+    setSelectedBadgeIndex(badge);
+    onOpen();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -173,23 +168,20 @@ const UserDetails = () => {
       <Box width={"90%"} mt={22} mx={"auto"}>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           {allBadges?.map((el, index) => (
-            <Flex justifyContent={"center"} key={index}>
-              <Image
-                src={el?.imageUrl}
-                w={"70%"}
-                onClick={() => onOpen(el?.imageUrl)}
+            <>
+              <Flex justifyContent={"center"} key={index}>
+                <Image
+                  src={el?.imageUrl}
+                  w={"70%"}
+                  onClick={() => handleClick(index)}
+                />
+              </Flex>
+              <Badge
+                elem={allBadges[selectedBadgeIndex]}
+                isOpen={isOpen}
+                onClose={onClose}
               />
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Image src={el?.imageUrl} w={"70%"} />
-                  </ModalBody>
-                </ModalContent>
-              </Modal>
-            </Flex>
+            </>
           ))}
         </Grid>
       </Box>
