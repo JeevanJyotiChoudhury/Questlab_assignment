@@ -15,7 +15,10 @@ const Badge = ({ elem, isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay bg="blur" backgroundColor="rgba(255, 255, 255, 0.1)" />
-      <ModalContent width={"20%"}>
+      <ModalContent
+        className="modal"
+        width={{ base: "80%", md: "80%", lg: "20%" }}
+      >
         <ModalHeader></ModalHeader>
         <ModalCloseButton />
         <ModalBody>

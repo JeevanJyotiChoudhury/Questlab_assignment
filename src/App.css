@@ -3,6 +3,7 @@
   width: 25%;
   margin: auto;
 }
+
 @media only screen and (max-width: 600px) {
   .App {
     width: 100%;
