@@ -12,12 +12,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Badge from "./Modal";
+import { allBadge } from "../assets/images";
 
 const UserDetails = () => {
   const [profileDetails, setProfileDetails] = useState({});
   const [pointsAndLevel, setPointsAndLevel] = useState({});
   const [rank, setRank] = useState("");
-  const [allBadges, setAllBadges] = useState([]);
+  const [allBadges, setAllBadges] = useState(allBadge);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedBadgeIndex, setSelectedBadgeIndex] = useState(null);
   const handleClick = (badge) => {
@@ -115,18 +116,21 @@ const UserDetails = () => {
       textAlign={"center"}
       borderTopRadius={"8"}
     >
-      <Flex justifyContent="space-between">
+      <Box>
         <Flex display="flex" justifyContent="center">
           <Image
-            src={profileDetails?.imageUrl}
+            // src={profileDetails?.imageUrl}
+            src={
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIqC-SGBezJ50c4y3V6WLexb-AEmBdUebNAZQ47_RWMyFKH3vgvCdnt83l97sxy5nr6Lg&usqp=CAU"
+            }
             w="30%"
             mt={"-15%"}
             border="2px solid white"
             borderRadius={"50%"}
-            boxShadow="2xl"
+            boxShadow="3xl"
           />
         </Flex>
-      </Flex>
+      </Box>
       <Text fontSize="2xl" py={5} fontWeight={"500"}>
         {profileDetails?.name}
       </Text>
@@ -138,15 +142,18 @@ const UserDetails = () => {
         textColor={"white"}
       >
         <Box backgroundColor={"#7052ff"} borderRadius={"8"} py={"5"}>
-          <Text>{pointsAndLevel?.data}</Text>
+          {/* <Text>{pointsAndLevel?.data}</Text> */}
+          <Text>109</Text>
           <Text>Points</Text>
         </Box>
         <Box backgroundColor={"#7052ff"} borderRadius={"8"} py={"5"}>
-          <Text>#{rank}</Text>
+          {/* <Text>#{rank}</Text> */}
+          <Text>#123</Text>
           <Text>Rank</Text>
         </Box>
         <Box backgroundColor={"#7052ff"} borderRadius={"8"} py={"5"}>
-          <Text>{pointsAndLevel?.tier}</Text>
+          {/* <Text>{pointsAndLevel?.tier}</Text> */}
+          <Text>2</Text>
           <Text>Level</Text>
         </Box>
       </Grid>
@@ -166,13 +173,13 @@ const UserDetails = () => {
         </Tabs>
       </Flex>
       <Box width={"90%"} mt={22} mx={"auto"}>
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        <Grid templateColumns="repeat(3, 1fr)" gap={4}>
           {allBadges?.map((el, index) => (
             <>
-              <Flex justifyContent={"center"} key={index}>
+              <Flex justifyContent={"center"} key={index} height="4.5rem">
                 <Image
                   src={el?.imageUrl}
-                  w={"70%"}
+                  w={"100%"}
                   onClick={() => handleClick(index)}
                 />
               </Flex>
